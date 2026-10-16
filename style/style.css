@@ -1,0 +1,1129 @@
+/* Пытался делать пиксель перфект, поэтому не использовал всякие библиотеки на стили по типу бутстрапа */
+/* В фигме было написано, что есть задачи помеченные комментариями, но я таких не нашел, ну или мне они не показываются */
+
+/* Общие стили */
+
+* {
+    font-family: "Inter", sans-serif;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    width: min(1420px, 100% - 90px);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.normal-checkbox {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    min-width: 20px;
+    height: 20px;
+    border: 2px solid #999999;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(4px);
+    cursor: pointer;
+    position: relative;
+    vertical-align: middle;
+}
+
+.normal-checkbox:hover::after,
+.normal-checkbox:checked::after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 1px;
+    width: 5px;
+    height: 10px;
+    border: solid #999999;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.normal-checkbox:checked::after {
+    border-color: white;
+}
+
+.normal-checkbox:checked {
+    background: #f23051;
+    border-color: #f23051;
+}
+
+.normal-checkbox:checked:hover {
+    background: #fc8b9e;
+    border-color: #fc8b9e;
+}
+
+.grower {
+    display: flex;
+    flex-grow: 1;
+}
+
+.large-hide {
+    display: none;
+}
+
+/* Хэдер */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    border-bottom: 2px solid #F2F2F2;
+    padding: 8px 0px 8px 0px;
+    margin-bottom: 20px;
+}
+
+.logo {
+    margin-top: 4px;
+}
+
+.cart-button {
+    border: none;
+    outline: none;
+    background-color: #F2F2F2;
+    border-radius: 12px;
+    color: #A61029;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 7px 0px 3px 0px;
+    position: relative;
+    width: 92px;
+    cursor: pointer;
+}
+
+.cart-button:hover {
+    color: black;
+}
+
+.cart-button:active {
+    color: #af5056;
+    background-color: #ffdbdd;
+}
+
+.cart-button-count {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    color: white;
+    font-weight: 400;
+    background-color: #CC2929;
+    border-radius: 12px;
+    padding: 1px 4.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cart-button-price {
+    margin-top: -1px;
+}
+
+header p {
+    font-weight: 700;
+    font-size: 16px;
+    color: #2B2B2B;
+    margin: 14px 0px ;
+}
+
+/* Хлебные крохи */
+
+.breadcrumbs {
+    display: flex;
+    align-items: center;
+}
+
+.breadcrumb-start {
+    background-color: #F2F2F2;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    margin-right: 16px;
+}
+
+.breadcrumb-start:hover {
+    background-color: #fcd7dd;
+}
+
+.breadcrumb-start:active {
+    background-color: #ff979e;
+}
+
+.breadcrumbs span {
+    color: #999999;
+    font-size: 13px;
+    margin-right: 8px;
+}
+
+.breadcrumb-peace,
+.breadcrumbs p {
+    color: #262626;
+    font-weight: 600;
+    font-size: 14px;
+    margin: 0px 0px 1px 0px;
+    text-decoration: none;
+}
+
+.breadcrumb-peace {
+    margin-right: 9px;
+}
+
+.breadcrumb-peace:hover {
+    color: #f23051;
+}
+
+.breadcrumb-peace:active {
+    color: #8a383b;
+}
+
+/* Разделение страницы на 2 части */
+
+.main-content {
+    display: flex;
+}
+
+.products {
+    width: 73.25%;
+}
+
+.payment {
+    width: 26.75%;
+}
+
+/* Название страницы и соседние блоки */
+
+.page-name {
+    display: flex;
+    align-items: center;
+}
+
+.page-name h1 {
+    color: #0D0D0D;
+    font-size: 28px;
+    margin: 16px 0px 8px;
+    font-family: 'Vladivostok', sans-serif;
+}
+
+h1.order-title {
+    margin: 21px 20px 8px;
+}
+
+.back-to-cart {
+    display: flex;
+    color: #2B2B2B;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    margin-top: 10px;
+    margin-left: 16px;
+    border-right: 2px solid #F2F2F2;
+}
+
+.back-to-cart p {
+    margin: 4px 24px 4px 12px;
+}
+
+.cart-count {
+    background-color: #F2F2F2;
+    border-radius: 12px;
+    color: #404040;
+    font-weight: 400;
+    font-size: 11px;
+    padding: 5px 8px 4px 8px;
+    margin: 0px 0px 0px 13px;
+}
+
+/* Управление корзиной */
+
+.cart-control {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.cart-control button,
+.cart-control label {
+    background-color: #F2F2F2;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 7px 16px 7px 10px;
+    border: none;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    user-select: none;
+}
+
+.cart-control button:hover,
+.cart-control label:hover {
+    background-color: #fcd7dd;
+}
+
+.cart-control button:active,
+.cart-control label:active {
+    background-color: #ff979e;
+}
+
+.cart-control span {
+    margin-left: 7px;
+    margin-bottom: 1px;
+}
+
+.garbage {
+    margin: 0px 4px;
+}
+
+/* Карточка товара */
+
+.product-card {
+    width: 100%;
+    padding: 18px 0px 20px;
+    border-bottom: 2px solid #F2F2F2;
+    display: flex;
+    position: relative;
+}
+
+.product-image {
+    width: 90px;
+    height: fit-content;
+}
+
+.product-card .normal-checkbox {
+    position: absolute;
+    left: 2px;
+    top: 23px;
+}
+
+.product-info {
+    padding: 3px 11px 0px;
+}
+
+.product-sku {
+    color: #404040;
+    font-weight: 400;
+    font-size: 11px;
+    margin: 0px;
+}
+
+.product-name {
+    font-weight: 700;
+    font-size: 16px;
+    color: #2B2B2B;
+    margin: 0px;
+}
+
+.product-pay-info {
+    margin-left: auto;
+    text-align: right;
+}
+
+.product-final-price {
+    margin: 6px 1px 1px;
+    font-weight: 700;
+    font-size: 16px;
+    color: #2B2B2B;
+}
+
+.product-final-price.working-promo {
+    color: #CC2929;
+}
+
+.product-price {
+    margin: 0px;
+    font-weight: 400;
+    font-size: 11px;
+    color: #999999;
+}
+
+.product-control {
+    display: flex;
+    margin-top: 11px;
+    gap: 4px;
+}
+
+.quantity-wrap {
+    display: flex;
+    position: relative;
+}
+
+.plus,
+.minus {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: transparent;
+    border: none;
+    outline: none;
+    height: 100%;
+    padding-bottom: 11px;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.plus:hover,
+.minus:hover {
+    background-color: #fcd7dd;
+    color: #cf203e;
+}
+
+.plus:active,
+.minus:active {
+    background-color: #ff979e;
+    color: #cf203e;
+}
+
+.plus {
+    left: unset;
+    padding-bottom: unset;
+    right: 0;
+}
+
+.product-quantity {
+    text-align: center;
+    background-color: #F2F2F2;
+    color: #2B2B2B;
+    font-size: 13px;
+    width: 78px;
+    height: 40px;
+    border-radius: 12px;
+    border: none;
+    outline: none;
+}
+
+.product-delete {
+    border: none;
+    outline: none;
+    border-radius: 12px;
+    background-color: #F2F2F2;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.product-delete:hover {
+    background-color: #fcd7dd;
+}
+
+.product-delete:active {
+    background-color: #ff979e;
+}
+
+.product-delete img {
+    margin-top: 2px;
+}
+
+.product-price-for-one {
+    margin: 0px;
+    font-weight: 400;
+    font-size: 9px;
+    color: #999999;
+    text-align: center;
+    margin-right: 38px;
+    margin-top: 1px;
+}
+
+/* Оформление */
+
+.pay-card {
+    border-radius: 24px;
+    margin-left: 40px;
+    box-shadow: 0px 0px 10px 2px #000B401A;
+    margin-top: 63px;
+    padding: 16px 20px 20px;
+}
+
+.pay-card.order-new-mg {
+    margin-top: 92px;
+}
+
+.pay-card-title {
+    color: #2B2B2B;
+    font-weight: 700;
+    font-size: 24px;
+    font-family: 'Vladivostok', sans-serif;
+    margin: 0px 0px 18px;
+}
+
+.pay-card-line {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #F2F2F2;
+}
+
+.pay-card-line.special-margin {
+    margin-bottom: 7px;
+}
+
+.pay-card-line.special-padding {
+    padding-bottom: 4px;
+}
+
+.pay-card-text {
+    font-size: 13px;
+    font-weight: 400;
+    color: #404040;
+    margin: 0px;
+}
+
+.pay-card-black-text {
+    color: #0D0D0D;
+}
+
+.pay-card-red-text {
+    color: #CC2929;
+    font-weight: 700;
+}
+
+.pay-card-big-text {
+    font-weight: 700;
+    color: #0D0D0D;
+    font-size: 20px;
+    margin: 0px;
+    font-family: 'Vladivostok', sans-serif;
+}
+
+.pay-button {
+    background-color: #F23051;
+    border-radius: 12px;
+    border: none;
+    outline: none;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 600;
+    width: 100%;
+    height: 48px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.pay-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.pay-button:hover {
+    background-color: #fc8b9e;
+}
+
+.pay-button:active {
+    background-color: #ff979e;
+}
+
+.pay-button img {
+    margin-left: 8px;
+    top: 2px;
+    position: relative;
+}
+
+.discount-line {
+    display: flex;
+    margin-left: 43px;
+    margin-top: 10px;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    color: #2B2B2B;
+    user-select: none;
+}
+
+.discount-line:hover {
+    color: #f23051;
+}
+
+.discount-line:active {
+    color: #8a383b;
+}
+
+.discount-promo {
+    display: flex;
+    align-items: center;
+}
+
+.discount-promo p {
+    margin-left: 7px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.arrow {
+    transform: rotateX(180deg);
+    margin-right: 7px;
+    margin-top: 1px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.arrow.rotate {
+    transform: rotateX(0deg);
+}
+
+.promo {
+    margin-left: 40px;
+    margin-top: 7px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    height: 0px;
+}
+
+.promo.visible {
+    opacity: 1;
+    height: unset;
+}
+
+.promo p {
+    font-size: 11px;
+    color: #999999;
+    font-weight: 400;
+    margin: 0px 0px 3px;
+}
+
+.promo svg {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    cursor: pointer;
+    color: #CCCCCC;
+}
+
+.promo svg:hover {
+    color: #fc8b9e;
+}
+
+.promo svg:active {
+    color: #cc1433;
+}
+
+.promo-input {
+    background-color: #F2F2F2;
+    width: calc(100% - 32px);
+    border-radius: 12px;
+    border: none;
+    outline: none;
+    font-weight: 400;
+    font-size: 16px;
+    padding: 14px 16px;
+}
+
+.promo-input:hover {
+    outline: 2px solid #cccccc;
+}
+
+.promo-input:focus {
+    background-color: transparent;
+    outline: 2px solid #cccccc;
+}
+
+.promo-button {
+    background-color: #0D0D0D;
+    border-radius: 12px;
+    border: none;
+    outline: none;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 600;
+    width: 100%;
+    height: 48px;
+    margin-top: 12px;
+    cursor: pointer;
+}
+
+.promo-button:hover {
+    background-color: #404040;
+}
+
+.promo-button:active {
+    background-color: #2b2b2b;
+}
+
+.promo-wrap {
+    position: relative;
+}
+
+.promo-wrap.block {
+    pointer-events: none;
+}
+
+#promo-alert.bad {
+    color: #CC2929;
+}
+
+#promo-alert.nice {
+    color: green;
+}
+
+/* Футер */
+
+footer {
+    background-color: #FCD7DD;
+    width: 100%;
+    margin-top: 40px;
+    padding: 40px 0px 80px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 2px solid #F2F2F2;
+    padding-top: 28px;
+}
+
+.footer-content p {
+    margin: 0;
+    color: #999999;
+    font-size: 13px;
+    font-weight: 400;
+    margin-bottom: 8px;
+}
+
+.footer-content img {
+    margin-top: 12px;
+}
+
+/* Оформление заказа */
+
+.active-items-block {
+    border-radius: 32px;
+    box-shadow: 0px 0px 10px 2px #000B401A;
+    margin-top: 24px;
+    padding: 36px 40px 40px;
+}
+
+.active-items-img-wrap {
+    position: relative;
+}
+
+.active-items-img-wrap img {
+    width: 90px;
+    height: auto;
+}
+
+.active-items-img-wrap p {
+    background-color: #404040;
+    padding: 1px 5.5px;
+    color: #FFFFFF;
+    font-weight: 400;
+    font-size: 11px;
+    position: absolute;
+    top: -2px;
+    right: 9px;
+    border-radius: 12px;
+}
+
+.active-items-wrap {
+    display: flex;
+    margin-top: 15px;
+    gap: 12px;
+    flex-wrap: wrap;
+    row-gap: 8px;
+    margin-left: 1px;
+}
+
+.active-items-count {
+    font-size: 24px;
+    font-weight: 700;
+    font-family: 'Vladivostok', sans-serif;
+    margin: 0;
+}
+
+.second-back-to-cart {
+    background-color: #F2F2F2;
+    border-radius: 12px;
+    color: #2B2B2B;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    display: flex;
+    width: fit-content;
+    padding: 11px 15px 11px 16px;
+    margin-top: 18px;
+    gap: 12px;
+}
+
+.second-back-to-cart:hover {
+    background-color: #fcd7dd;
+}
+
+.second-back-to-cart:active {
+    background-color: #ff979e;
+}
+
+.second-back-to-cart p {
+    margin: 0;
+    bottom: 1px;
+    position: relative;
+}
+
+/* Клиентская форма */
+
+.client-form {
+    border-radius: 32px;
+    box-shadow: 0px 0px 10px 2px #000B401A;
+    margin-top: 20px;
+    padding: 36px 40px;
+}
+
+.pay-type-form {
+    padding: 36px 40px 28px;
+}
+
+.client-title {
+    font-size: 24px;
+    font-weight: 700;
+    font-family: 'Vladivostok', sans-serif;
+    margin: 0;
+}
+
+.client-sub-title {
+    color: #404040;
+    font-weight: 400;
+    font-size: 16px;
+    margin: 6px 0px;
+    letter-spacing: 0.005em;
+}
+
+.client-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    row-gap: 13px;
+    margin-top: 23px;
+}
+
+.client-input-wrap {
+    position: relative;
+    width: 49.35%;
+}
+
+.client-input {
+    background-color: #F2F2F2;
+    width: calc(100% - 32px);
+    border-radius: 12px;
+    border: none;
+    outline: none;
+    font-weight: 400;
+    font-size: 16px;
+    padding: 14px 16px;
+}
+
+.client-input:hover {
+    outline: 2px solid #cccccc;
+}
+
+.client-input:focus {
+    background-color: transparent;
+    outline: 2px solid #cccccc;
+}
+
+.client-input-wrap svg:hover {
+    color: #fc8b9e;
+}
+
+.client-input-wrap svg:active {
+    color: #cc1433;
+}
+
+.client-input.extra-padding {
+    padding: 14px 14px 14px 44px;
+    width: calc(100% - 58px);
+}
+
+.client-input-wrap img,
+.client-input-wrap svg {
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    cursor: pointer;
+    color: #CCCCCC;
+}
+
+.client-input-wrap img {
+    right: unset;
+    left: 13px;
+    bottom: 13px;
+}
+
+.client-input-title {
+    color: #999999;
+    font-weight: 400;
+    font-size: 11px;
+    margin: 0;
+    margin-bottom: 3px;
+}
+
+.client-warning {
+    color: #404040;
+    font-size: 16px;
+    font-weight: 400;
+    border-top: 2px solid #F2F2F2;
+    border-bottom: 2px solid #F2F2F2;
+    padding: 13px 0px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-top: 20px;
+    margin-bottom: 21px;
+    letter-spacing: 0.005em;
+}
+
+.warning-no-bottom {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.client-warning img {
+    margin-left: 1px;
+}
+
+.client-textarea {
+    resize: none;
+    background-color: #F2F2F2;
+    width: calc(100% - 32px);
+    border-radius: 12px;
+    border: none;
+    outline: none;
+    font-weight: 400;
+    font-size: 16px;
+    padding: 14px 16px;
+    min-height: 68px;
+}
+
+.client-textarea:hover {
+    outline: 2px solid #cccccc;
+}
+
+.client-textarea:focus {
+    background-color: transparent;
+    outline: 2px solid #cccccc;
+}
+
+.client-form label {
+    background-color: #F2F2F2;
+    padding: 22px 24px 20px 57px;
+    border-radius: 12px;
+    width: 41.2%;
+    position: relative;
+    cursor: pointer;
+}
+
+.client-form label:hover {
+    outline: 2px solid #cccccc;
+}
+
+.client-form label:active {
+    background-color: #cccccc;
+}
+
+.radio-line {
+    display: flex;
+    gap: 12px;
+    margin-top: 22px;
+}
+
+.client-form label input {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 24px;
+    height: 24px;
+    appearance: none;
+    -webkit-appearance: none;
+    margin: 0;
+    border: 2px solid #999999;
+    background: transparent;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.client-form label input::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #e53935;
+    transform: translate(-50%, -50%) scale(0);
+}
+
+.client-form label input:checked {
+    border-color: #e53935;
+}
+
+.client-form label input:checked::after {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.client-form label:has(input:checked) {
+    border: 2px solid #F23051;
+    padding: 20px 22px 20px 54px;
+    outline: none;
+}
+
+.client-form label:has(input:checked) input {
+    top: 18px;
+    right: 18px;
+}
+
+.client-form label span {
+    color: #2B2B2B;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.client-form label p {
+    margin: 0;
+    color: #999999;
+    font-weight: 400;
+    font-size: 13px;
+    margin-top: 8px;
+}
+
+.client-form label svg {
+    position: absolute;
+    left: 21px;
+    top: 24px;
+}
+
+.client-form label:has(input:checked) svg {
+    top: 22px;
+    left: 19px;
+    color: #f23051;
+}
+
+.ready-check {
+    display: flex;
+    margin-left: 21px;
+    color: #999999;
+    font-size: 16px;
+    font-weight: 400;
+    gap: 9px;
+    margin-top: 1px;
+    letter-spacing: 0.005em;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.ready-check.visible {
+    opacity: 1;
+}
+
+.ready-check img {
+    bottom: 1px;
+    position: relative;
+}
+
+.order-final {
+    display: flex;
+    margin-top: 20px;
+    border-top: 2px solid #F2F2F2;
+    padding-top: 18px;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.order-final button {
+    background-color: #F23051;
+    border-radius: 12px;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    outline: none;
+    padding: 14px 20.5px;
+    cursor: pointer;
+}
+
+.order-final button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Разное */
+
+.news-block {
+    display: none;
+    margin-top: 10px;
+}
+
+.header-back-button {
+    width: 48px;
+    height: 48px;
+    background-color: #F2F2F2;
+    border-radius: 12px;
+    border: none;
+    outline: none;
+    position: relative;
+    left: -4px;
+}
+
+.header-back-button img {
+    margin-top: 2px;
+}
+
+/* Финальная страница */
+
+.success {
+    width: calc(100% - 40px);
+    height: 65vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0px 20px;
+    text-align: center;
+}
+
+.success h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #2B2B2B;
+    margin-top: 36px;
+    margin-bottom: 0px;
+    font-family: 'Vladivostok', sans-serif;
+}
+
+.success p {
+    font-size: 16px;
+    font-weight: 400;
+    color: #404040;
+    margin-top: 12px;
+}
+
+.success a {
+    font-size: 16px;
+    font-weight: 600;
+    color: #FFFFFF;
+    background-color: #F23051;
+    border-radius: 12px;
+    padding: 14px 20px;
+    border: none;
+    outline: none;
+    margin-top: 24px;
+    text-decoration: none;
+}
+
+.success a:hover {
+    background-color: #fc8b9e;
+}
+
+.success a:active {
+    background-color: #dc2632;
+}
